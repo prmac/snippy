@@ -342,7 +342,7 @@ $fbopt .= sprintf " --targets '%s'", abs_path($targets) if $targets;
 # rules to extract good SNPs from the above freebayes
 # can't use AF here as freebayes only uses 0, 0.5, 1
 #my $bcf_filter = qq{FMT/GT="1/1" && FMT/DP>=$mincov && AB<$minfrac};
-my $bcf_filter = qq{(FMT/GT="1/1" || FMT/GT="0/1") && QUAL>=$minqual && FMT/DP>=$mincov && (FMT/AO)/(FMT/DP)>=$minfrac};
+my $bcf_filter = qq{(QUAL>=$minqual && FMT/DP>=$mincov && (FMT/AO)/(FMT/DP)>=$minfrac};
 
 # -@ = _additional_ CPUs: https://github.com/tseemann/snippy/issues/276
 my $sort_cpus = max(1, int($cpus/2)); # we have a pipe, so spread out a bit
